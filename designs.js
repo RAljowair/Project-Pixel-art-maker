@@ -2,22 +2,28 @@
 const slectedColor = document.getElementById("colorPicker").innerHTML;
 
 // Select size input
-const gridHeight = document.getElementById("inputHeight").vlaue;
-const gridWidth = document.getElementById("inputWidth").vlaue;
-const table = document.getElementById('pixelCanvas');
+const inputHeight = document.getElementById("inputHeight");
+const inputWidth = document.getElementById("inputWidth");
+const pixelCanvas = document.getElementById('pixelCanvas');
 // When size is submitted by the user, call makeGrid()
-makeGrid();
+const sizePicker = document.getElementById('sizePicker');
+
+sizePicker.addEventListener('submit', function (e){
+    e.preventDefault();
+    makeGrid();    
+})
+
 
 function makeGrid() {
+    
+    rows = inputHeight.value;
+    columns = inputWidth.value;
 
-    // Your code goes here!
-    const cell = document.createElement('td');
-
-    for (var row = 1; row <= gridHeight; row++) {
-        const tableRow = document.createElement('tr');
-        table.appendChild(tableRow);
-        for (var column = 1; column <= gridWidth; column++) {
-            tableRow.appendChild(cell);
+    for(var i = 0; i < rows ; i++){
+        pixelCanvas.appendChild(document.createElement('tr'));
+        for(var j = 0; j < columns ; j++){
+            var allRows = document.querySelectorAll('tr');
+            allRows[i].appendChild(document.createElement('td'));
         }
     }
 }
